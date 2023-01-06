@@ -1,9 +1,18 @@
 <template>
-  <button class="button">0</button>
+  <button class="button" :class="{ double, triple, operation }">
+    {{ label }}
+  </button>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    label: {},
+    operation: { type: Boolean },
+    double: { type: Boolean },
+    triple: { type: Boolean },
+  },
+};
 </script>
 
 <style></style>
