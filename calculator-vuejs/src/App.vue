@@ -6,4 +6,9 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+@font-face {
+  font-family: "RobotoMono";
+  src: url("./fonts/RobotoMono-Thin.ttf");
+}
+</style>
