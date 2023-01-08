@@ -37,7 +37,9 @@ export default {
   },
   components: { Button, Display },
   methods: {
-    clearMemory() {},
+    clearMemory() {
+      Object.assign(this.$data, this.$options.data());
+    },
     setOperation(operation) {},
     addDigit(n) {},
   },
