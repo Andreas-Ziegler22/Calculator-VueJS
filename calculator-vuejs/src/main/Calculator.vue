@@ -40,7 +40,13 @@ export default {
     clearMemory() {
       Object.assign(this.$data, this.$options.data());
     },
-    setOperation(operation) {},
+    setOperation(operation) {
+      if (this.current === 0) {
+        this.operation = operation;
+        this.current = 1;
+        this.clearDisplay = true;
+      }
+    },
     addDigit(n) {
       if (n === "." && this.displayValue.includes(".")) {
         return;
