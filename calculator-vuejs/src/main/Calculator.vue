@@ -45,6 +45,23 @@ export default {
         this.operation = operation;
         this.current = 1;
         this.clearDisplay = true;
+      } else {
+        const equals = operation === "=";
+        const currentOperation = this.operation;
+
+        try {
+          this.value[0] = eval(
+            `${this.values[0]} ${currentOperation} ${this.values[1]}`
+          );
+        } catch (e) {
+          this.$emit("onError", e);
+        }
+        this.values[1] = 0;
+
+        this.displayValue = this.values[0];
+        this.operation = equals ? null : operation;
+        this.current = equals ? 0 : 1;
+        this.clearDisplay = !equals;
       }
     },
     addDigit(n) {
@@ -54,14 +71,10 @@ export default {
       const clearDisplay = this.displayValue === "0" || this.clearDisplay;
       const currentValue = clearDisplay ? "" : this.displayValue;
       const displayValue = currentValue + n;
+
       this.displayValue = displayValue;
       this.clearDisplay = false;
-
-      if (n !== ".") {
-        const i = this.current;
-        const newValue = parseFloat(displayValue);
-        this.values[i] = newValue;
-      }
+      this.values[this.current] = displayValue;
     },
   },
 };
