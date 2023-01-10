@@ -50,7 +50,7 @@ export default {
         const currentOperation = this.operation;
 
         try {
-          this.value[0] = eval(
+          this.values[0] = eval(
             `${this.values[0]} ${currentOperation} ${this.values[1]}`
           );
         } catch (e) {
